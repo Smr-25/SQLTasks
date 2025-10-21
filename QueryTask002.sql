@@ -1,0 +1,33 @@
+CREATE DATABASE IMDB
+USE IMDB
+
+CREATE TABLE Movies 
+(
+Title NVARCHAR(50),
+DirectoryName NVARCHAR(50),
+Genre NVARCHAR(50),
+Rating DECIMAL(3,1)
+)
+
+CREATE TABLE Directors 
+(
+FullName NVARCHAR(50),
+AGE INT,
+Genre NVARCHAR(50),
+Rating DECIMAL(3,1)
+)
+
+CREATE TABLE Actors(
+Title NVARCHAR(50),
+DirectoryName NVARCHAR(50),
+Genre NVARCHAR(50),
+Rating DECIMAL(3,1)
+)
+
+CREATE TABLE Genres(
+Title NVARCHAR(50),
+DirectoryName NVARCHAR(50),
+Genre NVARCHAR(50),
+Rating DECIMAL(3,1)
+)
+
