@@ -62,8 +62,14 @@ JOIN Albums al ON al.AlbumId = m.AlbumId
 JOIN Artists ar ON ar.ArtistId = m.ArtistId
 
 --Query 2:
---SELECT al.Title,COUNT(m.MusicId) FROM Musics m
---LEFT JOIN Albums al ON al.AlbumId = m.AlbumId
+SELECT 
+    al.Title AS AlbumName,
+    (
+        SELECT COUNT(*)
+        FROM Musics m
+        WHERE m.AlbumId = al.AlbumId
+    ) AS SongCount
+FROM Albums al;
 
 
 
