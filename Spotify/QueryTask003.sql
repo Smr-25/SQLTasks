@@ -71,5 +71,31 @@ SELECT
     ) AS SongCount
 FROM Albums al;
 
+--Task 1
+CREATE VIEW GetMusicNameWithAlbumNameArtistNameDurationTime
+AS
+SELECT m.Title MusicTitle,al.Title AlbumTitle,ar.ArtistFullName,m.DurationSeconds FROM Musics m
+JOIN Albums al ON al.AlbumId = m.AlbumId
+JOIN Artists ar ON ar.ArtistId = m.ArtistId
 
+SELECT * FROM GetMusicNameWithAlbumNameArtistNameDurationTime
 
+--Task2
+CREATE VIEW GetAlbumsWithSongCount
+AS 
+SELECT al.Title AlbumName, COUNT(m.Title)SongCount FROM Albums al
+JOIN Musics m On al.AlbumId = m.AlbumId
+GROUP BY al.Title
+
+SELECT * FROM GetAlbumsWithSongCount
+
+--Task 3
+CREATE PROCEDURE GetSongsByAlbumAndListenerCount @listenerCount INT, @searchText NVARCHAR(20)
+AS
+BEGIN
+SELECT m.Title MusicName ,al.Title AlbumName ,m.Popularity ListenerCount FROM Musics m
+JOIN Albums al On al.AlbumId = m.AlbumId
+WHERE m.Popularity > @listenerCount	AND al.Title LIKE '%' + @searchTexT + '%'
+END
+
+EXEC GetSongsByAlbumAndListenerCount 12,2
